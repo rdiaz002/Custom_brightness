@@ -1,4 +1,5 @@
 package com.example.ronny.custom_brightness;
+
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,12 +13,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.RunnableFuture;
 
 
-public class MainActivity extends AppCompatActivity implements Runnable, SensorEventListener{
+public class MainActivity extends AppCompatActivity implements Runnable, SensorEventListener {
     private Context mContext;
     private SensorManager LIT;
     private Sensor light;
@@ -30,19 +33,27 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
     public Button b5;
     public Button b6;
     main_frag frag;
-    Integer[] arr1 = {0,0,0,0,0,0,0,0,0,0,0};
-    Integer[] arr2 = {0,0,0,0,0,0,0,0,0,0,0};
-    Integer[] arr3 = {0,0,0,0,0,0,0,0,0,0,0};
-    Integer[] default_o = {0,0,0,0,0,0,0,0,0,0,0};
+    Integer[] arr1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    Integer[] arr2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    Integer[] arr3 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    Integer[] default_o = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LIT = (SensorManager)getSystemService(SENSOR_SERVICE);
+        LIT = (SensorManager) getSystemService(SENSOR_SERVICE);
+        if (LIT == null) {
+            Toast.makeText(this, "No Sensor Found ", Toast.LENGTH_LONG).show();
+            return;
+        }
         light = LIT.getDefaultSensor(Sensor.TYPE_LIGHT);
-        LIT.registerListener(this,light,SensorManager.SENSOR_DELAY_NORMAL);
-        max_level=light.getMaximumRange();
+        if (light == null) {
+            Toast.makeText(this, " your phone will not be able to run this app", Toast.LENGTH_LONG).show();
+            return;
+        }
+        LIT.registerListener(this, light, SensorManager.SENSOR_DELAY_NORMAL);
+        max_level = light.getMaximumRange();
         b1 = (Button) findViewById(R.id.Custom1);
         b2 = (Button) findViewById(R.id.Custom2);
         b3 = (Button) findViewById(R.id.Custom3);
@@ -52,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
         frag = new main_frag();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-                ft.add(R.id.frag11,frag);
-                ft.commit();
+        ft.add(R.id.frag11, frag);
+        ft.commit();
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 frag.setArguments(bud);
-                ft.replace(R.id.frag11,frag);
+                ft.replace(R.id.frag11, frag);
                 ft.commit();
-                
+
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 frag.setArguments(bud);
-                ft.replace(R.id.frag11,frag);
+                ft.replace(R.id.frag11, frag);
                 ft.commit();
 
             }
@@ -91,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 frag.setArguments(bud);
-                ft.replace(R.id.frag11,frag);
+                ft.replace(R.id.frag11, frag);
                 ft.commit();
 
             }
@@ -99,19 +110,20 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            arr1 = frag.graph.pointsy.toArray(arr1);
+                arr1 = frag.graph.pointsy.toArray(arr1);
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            arr2 =frag.graph.pointsy.toArray(arr2);;
+                arr2 = frag.graph.pointsy.toArray(arr2);
+                ;
             }
         });
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            arr3 = frag.graph.pointsy.toArray(arr3);
+                arr3 = frag.graph.pointsy.toArray(arr3);
             }
         });
 
@@ -134,14 +146,14 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
     @Override
     protected void onResume() {
         super.onResume();
-        LIT.registerListener(this,light,SensorManager.SENSOR_DELAY_NORMAL);
+        LIT.registerListener(this, light, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(sensorEvent.sensor.getType()==Sensor.TYPE_LIGHT){
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_LIGHT) {
             WindowManager.LayoutParams s = getWindow().getAttributes();
-            s.screenBrightness = frag.getVal(sensorEvent.values[0],max_level/100);
+            s.screenBrightness = frag.getVal(sensorEvent.values[0], max_level / 100);
             getWindow().setAttributes(s);
         }
     }

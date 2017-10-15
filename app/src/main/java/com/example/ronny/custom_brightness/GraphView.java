@@ -53,9 +53,9 @@ public class GraphView extends View {
     protected void onDraw(Canvas canvas) {
         int index = pointsx.size();
 
-        paddingy =  (float)(getHeight()*0.02);
-        paddingx =  (float)(getWidth()*0.00);
-        graphWidth = (float) (getWidth() );
+        paddingy = (float) (getHeight() * 0.02);
+        paddingx = (float) (getWidth() * 0.00);
+        graphWidth = (float) (getWidth());
         graphHeight = (float) (getHeight() * 0.95);
         float inx = graphWidth / 100;
         float iny = graphHeight / 100;
@@ -97,8 +97,8 @@ public class GraphView extends View {
 
             case MotionEvent.ACTION_DOWN:
 
-                pointx = ((int)Math.floor((motionEvent.getRawX() / ((getWidth()/11)))));
-                Log.d("tag","" + pointx + " " +motionEvent.getRawX()+ "  "+ graphWidth);
+                pointx = ((int) Math.floor((motionEvent.getRawX() / ((getWidth() / 11)))));
+                Log.d("tag", "" + pointx + " " + motionEvent.getRawX() + "  " + graphWidth);
                 if (mVelo == null) {
                     mVelo = VelocityTracker.obtain();
                 } else {
@@ -130,12 +130,13 @@ public class GraphView extends View {
         return true;
     }
 
-    public float map(float x, float in_min, float in_max, float out_min, float out_max){
+    public float map(float x, float in_min, float in_max, float out_min, float out_max) {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
-    public float get_Brightness ( float val, float max , float g_max ){
 
-        return map(val ,0,max,0,g_max);
+    public float get_Brightness(float val, float max, float g_max) {
+
+        return map(val, 0, max, 0, g_max);
 
     }
 }
