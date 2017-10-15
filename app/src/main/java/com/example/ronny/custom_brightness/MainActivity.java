@@ -26,10 +26,14 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
     public Button b1;
     public Button b2;
     public Button b3;
+    public Button b4;
+    public Button b5;
+    public Button b6;
     main_frag frag;
     Integer[] arr1 = {0,0,0,0,0,0,0,0,0,0,0};
     Integer[] arr2 = {0,0,0,0,0,0,0,0,0,0,0};
     Integer[] arr3 = {0,0,0,0,0,0,0,0,0,0,0};
+    Integer[] default_o = {0,0,0,0,0,0,0,0,0,0,0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,9 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
         b1 = (Button) findViewById(R.id.Custom1);
         b2 = (Button) findViewById(R.id.Custom2);
         b3 = (Button) findViewById(R.id.Custom3);
-
+        b4 = (Button) findViewById(R.id.SAVE1);
+        b5 = (Button) findViewById(R.id.Save2);
+        b6 = (Button) findViewById(R.id.button6);
         frag = new main_frag();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
                 frag.setArguments(bud);
                 ft.replace(R.id.frag11,frag);
                 ft.commit();
+                
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
                 frag.setArguments(bud);
                 ft.replace(R.id.frag11,frag);
                 ft.commit();
+
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +93,28 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
                 frag.setArguments(bud);
                 ft.replace(R.id.frag11,frag);
                 ft.commit();
+
             }
         });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            arr1 = frag.graph.pointsy.toArray(arr1);
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            arr2 =frag.graph.pointsy.toArray(arr2);;
+            }
+        });
+        b6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            arr3 = frag.graph.pointsy.toArray(arr3);
+            }
+        });
+
 
         mContext = getApplicationContext();
     }
@@ -122,4 +150,6 @@ public class MainActivity extends AppCompatActivity implements Runnable, SensorE
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+
 }

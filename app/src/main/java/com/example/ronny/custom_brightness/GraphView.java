@@ -1,5 +1,6 @@
 package com.example.ronny.custom_brightness;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -52,9 +53,9 @@ public class GraphView extends View {
     protected void onDraw(Canvas canvas) {
         int index = pointsx.size();
 
-        paddingy = 30; //(float)(getHeight()*0.10);
-        paddingx = 35; //(float)(getWidth()*0.10);
-        graphWidth = (float) (getWidth() * 0.95);
+        paddingy =  (float)(getHeight()*0.02);
+        paddingx =  (float)(getWidth()*0.00);
+        graphWidth = (float) (getWidth() );
         graphHeight = (float) (getHeight() * 0.95);
         float inx = graphWidth / 100;
         float iny = graphHeight / 100;
@@ -96,7 +97,8 @@ public class GraphView extends View {
 
             case MotionEvent.ACTION_DOWN:
 
-                pointx = (Math.round((motionEvent.getRawX() / paddingx)) / 3);
+                pointx = ((int)Math.floor((motionEvent.getRawX() / ((getWidth()/11)))));
+                Log.d("tag","" + pointx + " " +motionEvent.getRawX()+ "  "+ graphWidth);
                 if (mVelo == null) {
                     mVelo = VelocityTracker.obtain();
                 } else {
@@ -118,11 +120,13 @@ public class GraphView extends View {
                         pointsy.set(pointx, pointsy.get(pointx) - 1);
                     }
                 }
+
                 invalidate();
                 break;
 
 
         }
+
         return true;
     }
 
