@@ -64,10 +64,12 @@ public class GraphView extends View {
         paint.setTextAlign(Align.LEFT);
         paint.setColor(Color.BLUE);
         paint.setStrokeWidth(10);
+        paint.setShadowLayer(20,100,100,Color.BLACK);
         for (int i = 0; i < pointsy.size(); i++) {
             canvas.drawCircle(i * 10 * inx + paddingx, graphHeight - (pointsy.get(i) * iny) + paddingy, 10, paint);
 
         }
+        paint.setColor(Color.WHITE);
         for (int i = 0; i < pointsy.size() - 1; i++) {
             canvas.drawLine(i * 10 * inx + paddingx, graphHeight - (pointsy.get(i) * iny) + paddingy, (i + 1) * 10 * inx + paddingx, graphHeight - (pointsy.get(i + 1) * iny) + paddingy, paint);
         }

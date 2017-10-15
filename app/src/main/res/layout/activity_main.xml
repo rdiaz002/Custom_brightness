@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
     tools:context="com.example.ronny.custom_brightness.MainActivity"
     tools:layout_editor_absoluteX="0dp"
@@ -22,6 +23,7 @@
 
     <Button
         android:id="@+id/Custom1"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -30,19 +32,25 @@
         android:layout_centerInParent="false"
         android:layout_marginLeft="21dp"
         android:layout_marginStart="21dp"
-        android:text="Custom1" />
+        android:text="Custom1"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/Custom2"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/Custom1"
         android:layout_alignBottom="@+id/Custom1"
         android:layout_centerHorizontal="true"
-        android:text="Custom2" />
+        android:text="Custom2"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/Custom3"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/Custom2"
@@ -51,34 +59,45 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="22dp"
         android:layout_marginRight="22dp"
-        android:text="Custom3" />
+        android:text="Custom3"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/SAVE1"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Custom1"
         android:layout_alignLeft="@+id/Custom1"
         android:layout_alignStart="@+id/Custom1"
-        android:text="Save1" />
+        android:text="Save1"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/Save2"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Custom2"
         android:layout_alignEnd="@+id/Custom2"
         android:layout_alignRight="@+id/Custom2"
-        android:text="Save2" />
+        android:text="Save2"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button6"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Custom3"
         android:layout_alignEnd="@+id/Custom3"
         android:layout_alignRight="@+id/Custom3"
-        android:text="Save3" />
+        android:text="Save3"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
